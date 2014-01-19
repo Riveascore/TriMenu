@@ -1,0 +1,10 @@
+'use strict';
+
+angular.module('TriMenuApp')
+  .controller('PrototypeCtrl', function ($scope) {
+    $scope.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
+  });

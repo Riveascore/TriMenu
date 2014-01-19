@@ -1,0 +1,73 @@
+#menu {
+    position:  absolute;
+    border: thin solid black;
+}
+.wrapper1 {
+    -webkit-transition: transform 1s;
+    position:  absolute;
+    -webkit-transform: rotate(-270deg);
+    /*border: thin solid red;*/
+}
+.wrapper2 {
+    -webkit-transition: transform 1s;
+    position:  absolute;
+    -webkit-transform: rotate(-30deg);
+    /*border: thin solid green;*/
+}
+.wrapper3 {
+    -webkit-transition: transform 1s;
+    position:  absolute;
+    -webkit-transform: rotate(-150deg);
+    /*border: thin solid blue;*/
+}
+
+.wrapper1 .menuItem {
+    border-radius: 5px 40px 5px;
+    position:  absolute;
+    background: DarkRed; 
+}
+.wrapper2 .menuItem {
+    border-radius: 5px 40px 5px;
+    position:  absolute;
+    background: DarkGreen; 
+}
+.wrapper3 .menuItem {
+    border-radius: 5px 40px 5px;
+    position:  absolute;
+    background: DarkBlue; 
+}
+
+html:hover .rotate330{
+    -webkit-transform: rotate(-330deg);
+}
+html:hover .rotate390{
+    -webkit-transform: rotate(-390deg);
+}
+html:hover .rotate450{
+    -webkit-transform: rotate(-450deg);
+}
+
+
+
+html:hover .rotate90{
+    -webkit-transform: rotate(-90deg);
+}
+html:hover .rotate150{
+    -webkit-transform: rotate(-150deg);
+}
+html:hover .rotate210{
+    -webkit-transform: rotate(-210deg);
+}
+
+
+/*First and last rotations get repeated */
+html:hover .rotate270{
+    -webkit-transform: rotate(-270deg);
+}
+
+.menuButton {
+    background: url("../images/menu.png");
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+    position: absolute;
+}
