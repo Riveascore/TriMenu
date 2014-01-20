@@ -267,3 +267,173 @@ menuItems.each(function (){
         })
     }
 });
+
+
+
+
+
+
+
+
+function initializeConnector(connectorParent, horizontal, segmentLength) {
+    var parentCenterPoint = {
+        x: connectorParent.width()/2,
+        y: connectorParent.height()/2
+    }
+    var unitOneConnectorLength = getMaxSizeAllowed()*2.5/18.0;
+    var actualLength = segmentLength * unitOneConnectorLength;
+
+    var connectorObject = connectorParent.find(".connector");
+    var parentMenuItem = connectorParent.find(".menuItem");
+    var menuItemHalf = parentMenuItem.width()/2;
+    // alert(connectorParent.height()/2);
+    var rotationAmountString = connectorParent.attr('class');
+    var rotationAmountValue = parseInt(rotationAmountString.match(/rotate(\d*)/)[1]) - 30;
+
+
+
+    var radiusSmall = parentMenuItem.css('border-bottom-right-radius').match(/(\d*)px/)[1];
+
+    var margins = firstQuadrant(rotationAmountValue, parentMenuItem.width()/2, radiusSmall);
+    alert(JSON.stringify(margins));
+    connectorObject.css({
+        //Let's try it out:
+        // "bottom": menuItemHalf,
+        // Let's try out the firstQuadrant function here: 
+        "margin": (margins.top+menuItemHalf) + "px 0 0 " + (margins.left+menuItemHalf) + "px",
+        // "margin": menuItemHalf + "px 0 0 " + menuItemHalf + "px",
+        "width": actualLength
+        // "right": connectorParent.width()/2,
+    });
+    transformOriginFunction(connectorObject, 0, 0);
+
+    rotateFunction(connectorObject, rotationAmountValue);
+}
+
+function rotateFunction(object, degree) {
+    object.css({
+        '-webkit-transform': 'rotate(' + degree + 'deg)',
+        '-moz-transform': 'rotate(' + degree + 'deg)',
+        '-ms-transform': 'rotate(' + degree + 'deg)',
+        '-o-transform': 'rotate(' + degree + 'deg)',
+        'transform': 'rotate(' + degree + 'deg)',
+        'zoom': 1
+    });
+}
+
+function transformOriginFunction(object, xAmount, yAmount) {
+    object.css({
+        '-webkit-transform-origin': xAmount + "% " + yAmount + "%",
+        '-moz-transform-origin': xAmount + "% " + yAmount + "%",
+        '-ms-transform-origin': xAmount + "% " + yAmount + "%",
+        '-o-transform-origin': xAmount + "% " + yAmount + "%",
+        'transform-origin': xAmount + "% " + yAmount + "%",
+        'zoom': 1
+    });
+}
+
+function moveBasedOnPosition(object, xAmount, yAmount) {
+
+}
+
+
+
+// Adding createConnector to $(".menuItemWrapper.wrapper1.rotate300 .menuItem")
+// var firstOfFirst = $(".menuItemWrapper.wrapper1.rotate300");
+
+
+
+initializeConnector($(".menuItemWrapper.wrapper1.rotate300"), true, 1.0);
+initializeConnector($(".menuItemWrapper.wrapper1.rotate360"), true, 1.0);
+initializeConnector($(".menuItemWrapper.wrapper1.rotate420"), true, 1.0);
+
+
+// (52-10)/sqrt(52^2+(10-52)^2)
+
+
+
+
+
+
+
+/* We know how to get ϕ:
+rL = radiusLarge
+rS = radiusSmall
+
+ϕ = arcsin((rL-rS)/sqrt(rL^2 + (rS-rL)^2))
+
+Leave for later, since this is more complicated, get simple solution to work first!
+*/
+
+function firstQuadrant(angleBeforeTransform, radiusLarge, radiusSmall) {
+    var margins = {
+        left: 0,
+        top: 0
+    }
+    var passesThroughThreeSixty = Math.floor(angleBeforeTransform / 360.0);
+    // alert(angleBeforeTransform);
+    var angle = angleBeforeTransform - (passesThroughThreeSixty * 360.0);
+    var smallAngle = (angle - 38) * 90 / 14;
+
+    angle = deg2Rad(angle);
+    smallAngle = deg2Rad(smallAngle);
+
+    if(between(angle, 0, 37)) {
+        margins.left = radiusLarge;
+        margins.top = radiusLarge * Math.tan(angle);
+    }
+    else if (between(angle, 38, 52)) {
+        margins.left = radiusLarge + radiusSmall * Math.cos(smallAngle);
+        margins.top = radiusSmall * Math.sin(smallAngle);   
+    }
+    else if (between(angle, 53, 90)) {
+        margins.left = radiusLarge * Math.tan(angle - 53);
+        margins.top = radiusLarge;            
+    }     
+    return margins;
+}
+
+// // INCLUSIVE on BOTH ends!!!
+function between(numberToCheck, lowIndex, highIndex) {
+    return numberToCheck >= lowIndex && numberToCheck <= highIndex
+}
+
+function deg2Rad(degrees) {
+    return degrees * Math.PI / 180;
+}
+
+function rad2Deg(radians) {
+    return radians * 180 / Math.PI;
+}
+
+
+
+
+
+/* All cases!!! <3 <3 <3
+
+First off, will always make angle 0-360 value
+I'll call them baseAngle, there's probably a name for them...
+baseAngle -> bA
+
+SINCE, angles will always be 0-360, we can just say >= 340
+
+
+
+
+
+if(baseAngle >= 340 || (baseAngle >= 0 && baseAngle <= 110)) {
+    roundedEdge1;
+}
+
+if(baseAngle >= 111 && baseAngle <= 159) {
+    pointedEdge;
+}
+
+if(baseAngle >= 160 && baseAngle <= 290) {
+    roundedEdge2;
+}
+
+if(baseAngle >= 291 && baseAngle <= 339) {
+    bottomEdge;
+}

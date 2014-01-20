@@ -206,6 +206,7 @@ html:hover .rotate270{
 
 .menuItem {
     -webkit-transform: rotate(30deg);
+
 }
 
 .redDot {
@@ -214,4 +215,15 @@ html:hover .rotate270{
     height: 10px;
     position: absolute;
     /*border-radius: 5px;*/
+}
+
+.connector {
+    position: relative;
+    background-color: green;
+    height: 6%;
+}
+
+#checkForVal {
+    z-index: 900;
+    position: absolute;
 }

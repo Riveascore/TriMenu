@@ -6165,3 +6165,89 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+
+body {
+    background-color: black
+}
+
+
+
+
+
+
+
+
+.brContainer {
+  margin-top: 200px;
+}
+.leaf {
+  width: 500px;
+  height: 500px;
+  /* border-radius: 0 25px 10px 25px; */
+  border-width: 10px;
+  border-color: red green orange Orchid;
+  border-style: solid;
+  border-radius: 0 352.5px 97px 352.5px;
+  position: absolute;
+}
+.myBox {
+  position: absolute;
+  width: 520px;
+  height: 520px;  
+  background-color: rgba(56, 124, 124, 0.5);
+}
+.lineH {
+  margin-top: 258px;
+  width: 520px;
+  height: 4px;
+  position: absolute;
+  background-color: white;
+}
+.lineV {
+  margin-left: 258px;  
+  width: 4px;
+  height: 520px;
+  position: absolute;
+  background-color: white;  
+}
+/*.realBall {
+  width: 705px;
+  height: 705px;  
+  border-radius: 352.5px;
+  background-color: rgba(250, 140, 0, 0.5);
+  position: absolute;
+  margin: 0 0 0 -185px;  
+}*/
+.realBall {
+  -webkit-transform:rotate(-45deg);
+  width: 685px;
+  height: 685px;  
+  border-width: 10px;
+  border-color: rgba(255, 255, 255, 0.5) blue rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5);
+  border-style: solid;
+  border-radius: 352.5px;
+  background-color: rgba(250, 140, 0, 0.5);
+  position: absolute;
+  margin: 0 0 0 -185px;  
+}
+.ballLineH {
+  /*margin-top: 351.5px;*/
+  -webkit-transform:rotate(45deg);  
+  margin-top: 341.5px;
+  margin-left: -10px;
+  width: 705px;
+  height: 3px;
+  position: absolute;
+  background-color: white;
+}
+.ballLineV {
+  /*margin-left: 351.5px;    */
+  -webkit-transform:rotate(45deg);    
+  margin-left: 341.5px;  
+  margin-top: -10px;
+  width: 3px;
+  height: 705px;
+  position: absolute;
+  background-color: white;
+}

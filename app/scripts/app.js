@@ -11,6 +11,14 @@ angular.module('TriMenuApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/br', {
+        templateUrl: 'views/br.html',
+        controller: 'BrCtrl'
+      })
+      .when('/hohome', {
+        templateUrl: 'views/hohome.html',
+        controller: 'HohomeCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
