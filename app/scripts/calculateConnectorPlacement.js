@@ -1,7 +1,18 @@
+function angleToBaseAngle(inputAngle) {
+    var numberOfFullRotations = Math.floor(inputAngle / 360.0);
+    return inputAngle - (numberOfFullRotations * 360);
+}
+
+function getMaxSizeAllowed() {
+    return Math.min(screen.availWidth, screen.availHeight);
+}
+
+
+
 // 2 "tests"
-var radiusSideCircles = getMaxSizeAllowed()/20,
-    radiusMenuItem = $("div.menuItem").first().height() / 2,
-    radiusBottomCircle = 10.0 / 52 * radiusMenuItem * 2;
+// var radiusSideCircles = getMaxSizeAllowed()/20,
+//     radiusMenuItem = $("div.menuItem").first().height() / 2,
+//     radiusBottomCircle = 10.0 / 52 * radiusMenuItem * 2;
 
 // These two passed
 // alert(JSON.stringify(calculateConnectorPlacement(0, 0)) + 
@@ -14,7 +25,11 @@ var radiusSideCircles = getMaxSizeAllowed()/20,
 /* additionalAngle is for placing connector on a particular side,
 by default, connector is placed on right side, 0 deg, you can choose to place 
 the connector on top, or at a 45 deg angle for instance when using bent connectors */
-function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle) {
+function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle, radii) {
+    var radiusSideCircles = radii[0],
+        radiusMenuItem = radii[1],
+        radiusBottomCircle = radii[2];
+
     var finalPosition = {
         x: 0,
         y: 0,
@@ -113,3 +128,5 @@ function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle) {
     // testPutSmallDotAtMenuItemOriginToNewPosition
     return finalPosition;
 }
+
+module.exports.calculateConnectorPlacement = calculateConnectorPlacement;

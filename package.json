@@ -43,5 +43,11 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "jsdom": "*",
+    "jquery": "*"
+  }  
 }
