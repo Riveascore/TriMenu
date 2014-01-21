@@ -8,8 +8,8 @@ var radiusSideCircles = getMaxSizeAllowed()/20,
 //     "\n\n" + JSON.stringify(calculateConnectorPlacement(338, 0)));
 
 // Try first 2 menu items (3rd is brown :( )
-alert(JSON.stringify(calculateConnectorPlacement(330, 0)) + 
-    "\n\n" + JSON.stringify(calculateConnectorPlacement(270, 0)));
+// alert(JSON.stringify(calculateConnectorPlacement(330, 0)) + 
+//     "\n\n" + JSON.stringify(calculateConnectorPlacement(270, 0)));
 
 /* additionalAngle is for placing connector on a particular side,
 by default, connector is placed on right side, 0 deg, you can choose to place 
@@ -110,11 +110,6 @@ function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle) {
 
 
 
-    testPutSmallDotAtMenuItemOriginToNewPosition
+    // testPutSmallDotAtMenuItemOriginToNewPosition
     return finalPosition;
-}
-
-function angleToBaseAngle(inputAngle) {
-    var numberOfFullRotations = Math.floor(inputAngle / 360.0);
-    return inputAngle - (numberOfFullRotations * 360);
 }

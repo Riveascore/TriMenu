@@ -63,10 +63,6 @@ function distance(coordinates1, coordinates2) {
     return distanceCoordinates;
 }
 
-function getMaxSizeAllowed() {
-    return Math.min(screen.availWidth, screen.availHeight);
-}
-
 function maximizeMenuSize(element) {
     //Full 100% is a bit off for some reason...
     //85% works well, might go to 80% because of pathLines

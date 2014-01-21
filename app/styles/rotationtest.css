@@ -1,0 +1,50 @@
+.testMenuItem {
+  z-index: -1;
+  position:  absolute;
+  background: DarkGreen;
+  width: 51.5px;
+  height: 51.5px;
+  border-radius: 0 36.4px 10px 36.4px;  
+}
+.gridBox {
+  margin: 80px 0 0 50px;
+  position:  absolute;  
+  height: 50px;
+  width: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.gridLineH {
+  margin: 25px 0 0 -1px;
+  width: 52px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+.gridLineV {
+  margin: -1px 0 0 25px;
+  height: 52px;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+/*.gridBox {
+  -webkit-animation-name: rotate; 
+    -webkit-animation-duration: 10s; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 10s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+}
+@-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(-250deg);}
+    to {-webkit-transform: rotate(-340deg);}
+}*/
+
+#blueDot {
+  width: 1px;
+  height: 1px;
+  background-color: blue;
+}

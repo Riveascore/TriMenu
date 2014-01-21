@@ -19,6 +19,10 @@ angular.module('TriMenuApp', [
         templateUrl: 'views/hohome.html',
         controller: 'HohomeCtrl'
       })
+      .when('/RotationTest', {
+        templateUrl: 'views/rotationtest.html',
+        controller: 'RotationtestCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
