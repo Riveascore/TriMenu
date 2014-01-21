@@ -1,3 +1,5 @@
+$.getScript( "calculateConnectorPlacement.js" );
+
 function toRadians(degrees) {
     return 2 * Math.PI * degrees / 360;
 }
@@ -125,11 +127,12 @@ function generateAndPlaceWrappers(menu) {
 
             //Move menuItem for each wrapper on rightHandSide of wrapper
             var boxShadowSize = maxSizeAllowed/30;
+            var bottomBorderRadius = 10.0 / 52 * menuItem.width();
             menuItem.css({
                 "marginTop": wrapper.height()/2 - menuItem.height()/2,
                 "marginLeft": wrapper.width() - menuItem.width()/2,
                 // "border-radius": "0 " + maxSizeAllowed/20 + "px 10px " + maxSizeAllowed/20 + "px",
-                "border-radius": "0 " + maxSizeAllowed/20 + "px 10px " + maxSizeAllowed/20 + "px",
+                "border-radius": "0 " + maxSizeAllowed/20 + "px " + bottomBorderRadius + "px " + maxSizeAllowed/20 + "px",
                 "box-shadow": "0px 0px " + boxShadowSize + "px " + boxShadowSize/6 + "px #00FF00"
             });
 
@@ -295,7 +298,8 @@ function initializeConnector(connectorParent, horizontal, segmentLength) {
     var radiusSmall = parentMenuItem.css('border-bottom-right-radius').match(/(\d*)px/)[1];
 
     var margins = firstQuadrant(rotationAmountValue, parentMenuItem.width()/2, radiusSmall);
-    alert(JSON.stringify(margins));
+    // alert(JSON.stringify(margins));
+    // alert(rotationAmountValue);
     connectorObject.css({
         //Let's try it out:
         // "bottom": menuItemHalf,
@@ -395,7 +399,7 @@ function firstQuadrant(angleBeforeTransform, radiusLarge, radiusSmall) {
 
 // // INCLUSIVE on BOTH ends!!!
 function between(numberToCheck, lowIndex, highIndex) {
-    return numberToCheck >= lowIndex && numberToCheck <= highIndex
+    return numberToCheck >= lowIndex && numberToCheck <= highIndex;
 }
 
 function deg2Rad(degrees) {
@@ -417,23 +421,37 @@ I'll call them baseAngle, there's probably a name for them...
 baseAngle -> bA
 
 SINCE, angles will always be 0-360, we can just say >= 340
+*/
 
 
 
 
 
-if(baseAngle >= 340 || (baseAngle >= 0 && baseAngle <= 110)) {
-    roundedEdge1;
+// THIS RETURN VALUE IS ADDED TO connector's margin top/left when it's 
+// already at the menuItem's origin
+
+
+
+
+function testPutSmallDotAtMenuItemOriginToNewPosition(menuItem, positionObjectLiteral) {
+    var testDot = menuItem.find(".testDot");
+    var miOrigin = menuItem.width() / 2;
+    testDot.css({
+        'margin-top': positionObjectLiteral.y + miOrigin + "px",
+        'margin-left': positionObjectLiteral.x + miOrigin + "px"
+    });
 }
 
-if(baseAngle >= 111 && baseAngle <= 159) {
-    pointedEdge;
-}
+// calculateConnectorPlacement
+// var w1BaseAngle = 270;
+// var w2BaseAngle = 330;
+// var w3BaseAngle = 390;
 
-if(baseAngle >= 160 && baseAngle <= 290) {
-    roundedEdge2;
-}
 
-if(baseAngle >= 291 && baseAngle <= 339) {
-    bottomEdge;
-}
+// alert(JSON.stringify(calculateConnectorPlacement(w3BaseAngle)) + 
+//     "\n\n" + JSON.stringify(calculateConnectorPlacement(w2BaseAngle)) + 
+//         "\n\n" + JSON.stringify(calculateConnectorPlacement(w1BaseAngle)));
+
+// testPutSmallDotAtMenuItemOriginToNewPosition($("#MI3"), calculateConnectorPlacement(w3BaseAngle));
+// testPutSmallDotAtMenuItemOriginToNewPosition($("#MI2"), calculateConnectorPlacement(w2BaseAngle));
+// testPutSmallDotAtMenuItemOriginToNewPosition($("#MI1"), calculateConnectorPlacement(w1BaseAngle));

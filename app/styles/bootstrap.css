@@ -6251,3 +6251,18 @@ body {
   position: absolute;
   background-color: white;
 }
+.bottomBall {
+  width: 200px;
+  height: 200px;
+  background-color: rgba(237, 181, 6, 0.5);  
+  border-radius: 100px;
+  position: absolute;
+  margin: 320px 0 0 320px;
+}
+.testDot {
+  position: relative;
+  background-color: blue;
+  width: 5px;
+  height: 5px;
+  border-radius: 2.5px;
+}
