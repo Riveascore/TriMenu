@@ -53,7 +53,7 @@ body {
 .wrapper3 .menuItem {
     position:  absolute;
     background: DarkGreen; 
-    background: url("http://99covers.com/covers/watermark/23766.jpg");
+    /*background: url("http://99covers.com/covers/watermark/23766.jpg");*/
 }
 
 html:hover .rotate300{
@@ -221,9 +221,26 @@ html:hover .rotate270{
     position: relative;
     background-color: green;
     height: 6%;
+    width: 200%;
+    -webkit-transform-origin: 0% 50%;
 }
 
 #checkForVal {
     z-index: 900;
     position: absolute;
+}
+
+
+.connectorBent {
+    position: relative;
+    width: 200%;
+}
+.connectorBent .bentInner {
+    -webkit-transform-origin: 100% 0%;
+    -webkit-transform: rotate(-45deg);
+    background-color: green;    
+}
+.connectorBent .straightInner {
+    background-color: green;
+    height: 3px; 
 }

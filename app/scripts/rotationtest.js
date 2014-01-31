@@ -36,9 +36,17 @@ var rotationAmount;
 var blueDotPosition;
 var marginTopVal, marginLeftVal;
 var actualRotAm;
+
+var myRadii = [
+  36.4, 52, 1
+]
+
+    // var radiusSideCircles = radii[0],
+    //     radiusMenuItem = radii[1],
+    //     radiusBottomCircle = radii[2];
 setInterval(function() {
     roationAmount = getRotationDegrees(target);
-    blueDotPosition = calculateConnectorPlacement(roationAmount, 0);
+    blueDotPosition = calculateConnectorPlacement(roationAmount, 0, myRadii);
 
     marginTopVal = testMenuItemWidthHalf + blueDotPosition.y;
     marginLeftVal = testMenuItemWidthHalf + blueDotPosition.x;
@@ -54,9 +62,9 @@ setInterval(function() {
     else {
         actualRotAm = 0;
     }
-    $(".gridBox").css({
-        "-webkit-transform": "rotate(" + actualRotAm + "deg)"
-    });
+    // $(".gridBox").css({
+    //     "-webkit-transform": "rotate(" + actualRotAm + "deg)"
+    // });
 
     fillMe.val(blueDotPosition.x.toFixed(2) + "px\n" + blueDotPosition.y.toFixed(2) + "px");
     // fillMe.val($.type(marginTopVal));

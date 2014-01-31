@@ -6,6 +6,3 @@ function angleToBaseAngle(inputAngle) {
 function getMaxSizeAllowed() {
     return Math.min(screen.availWidth, screen.availHeight);
 }
-
-module.exports.angleToBaseAngle = angleToBaseAngle;
-module.exports.getMaxSizeAllowed = getMaxSizeAllowed;
