@@ -42,46 +42,21 @@ body {
 
 .wrapper1 .menuItem {
     position:  absolute;
-    background: DarkGreen;
+    background: green;
     /*background: url("http://99covers.com/covers/watermark/23766.jpg");*/
 }
 .wrapper2 .menuItem {
     position:  absolute;
-    background: DarkGreen; 
+    background: green; 
     /*background: url("http://99covers.com/covers/watermark/23766.jpg");*/
 }
 .wrapper3 .menuItem {
     position:  absolute;
-    background: DarkGreen; 
+    background: green; 
     /*background: url("http://99covers.com/covers/watermark/23766.jpg");*/
 }
 
-html:hover .rotate300{
-    -webkit-transform: rotate(-300deg);
-}
-html:hover .rotate360{
-    -webkit-transform: rotate(-360deg);
-}
-html:hover .rotate420{
-    -webkit-transform: rotate(-420deg);
-}
 
-
-html:hover .rotate60{
-    -webkit-transform: rotate(-60deg);
-}
-html:hover .rotate120{
-    -webkit-transform: rotate(-120deg);
-}
-html:hover .rotate180{
-    -webkit-transform: rotate(-180deg);
-}
-
-
-/*First and last rotations get repeated */
-html:hover .rotate240{
-    -webkit-transform: rotate(-240deg);
-}
 
 
 
@@ -194,7 +169,7 @@ html:hover .straightPath {
     -webkit-transform: rotate(300deg);
 }
 
-html:hover .rotate180{
+/*html:hover .rotate180{
     -webkit-transform: rotate(-180deg);
 }
 html:hover .rotate225{
@@ -202,7 +177,7 @@ html:hover .rotate225{
 }
 html:hover .rotate270{
     -webkit-transform: rotate(-270deg);
-}
+}*/
 
 .menuItem {
     -webkit-transform: rotate(30deg);
@@ -260,8 +235,8 @@ html:hover .rotate270{
     position: relative;
 
     /* just for testing: */
-    border: 1px solid black;
-    border-radius: 10px 0 0 0;
+    /*border: 1px solid black;*/
+    /*border-radius: 10px 0 0 0;*/
     -webkit-transform-origin: 0% 0%;     
 }
 
@@ -296,4 +271,59 @@ html:hover .rotate270{
 }
 .conTwo {
     width: 200%;
+}
+
+
+
+
+/*html:hover .rotate300{
+    -webkit-transform: rotate(-300deg);
+}
+html:hover .rotate360{
+    -webkit-transform: rotate(-360deg);
+}
+html:hover .rotate420{
+    -webkit-transform: rotate(-420deg);
+}
+
+
+html:hover .rotate60{
+    -webkit-transform: rotate(-60deg);
+}
+html:hover .rotate120{
+    -webkit-transform: rotate(-120deg);
+}
+html:hover .rotate180{
+    -webkit-transform: rotate(-180deg);
+}
+
+html:hover .rotate240{
+    -webkit-transform: rotate(-240deg);
+}*/
+#openOrClosed {
+
+}
+#openOrClosed:checked ~ .rotate300{
+    -webkit-transform: rotate(-300deg);
+}
+#openOrClosed:checked ~ .rotate360{
+    -webkit-transform: rotate(-360deg);
+}
+#openOrClosed:checked ~ .rotate420{
+    -webkit-transform: rotate(-420deg);
+}
+
+
+#openOrClosed:checked ~ .rotate60{
+    -webkit-transform: rotate(-60deg);
+}
+#openOrClosed:checked ~ .rotate120{
+    -webkit-transform: rotate(-120deg);
+}
+#openOrClosed:checked ~ .rotate180{
+    -webkit-transform: rotate(-180deg);
+}
+
+#openOrClosed:checked ~ .rotate240{
+    -webkit-transform: rotate(-240deg);
 }

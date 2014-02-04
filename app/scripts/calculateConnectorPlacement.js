@@ -36,11 +36,12 @@ $.each($(".menuItem"), function() {
     placementCoordinates = calculateConnectorPlacement(rotationAmount, additionalRotations[rotationsIndex], radii);
     // alert(additionalRotations[rotationsIndex]);
     // alert(JSON.stringify(placementCoordinates));
-    connectorRotation = 360 - (rotationAmount + additionalRotations[rotationsIndex]);
+    // connectorRotation = 360 - (rotationAmount + additionalRotations[rotationsIndex]);
+    connectorRotation = rotationAmount + additionalRotations[rotationsIndex];
     // alert(connectorRotation);
     $(this).find(".connectorContainer").css({
         "margin": (placementCoordinates.y + radii[1]*2.0*0.44) + "px 0 0 " + (placementCoordinates.x + radii[1]) + "px",
-        // "-webkit-transform": "rotate(" + connectorRotation + "deg)"
+        "-webkit-transform": "rotate(" + connectorRotation + "deg)"
     });
     rotationsIndex++;
 });

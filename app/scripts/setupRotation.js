@@ -120,8 +120,8 @@ function generateAndPlaceWrappers(menu) {
             menuItem.css({
                 "marginTop": wrapper.height()/2 - menuItem.height()/2,
                 "marginLeft": wrapper.width() - menuItem.width()/2,
-                "border-radius": "0 " + maxSizeAllowed/20 + "px " + 0 + "px " + maxSizeAllowed/20 + "px"
-                // "border-radius": "0 " + maxSizeAllowed/20 + "px " + bottomBorderRadius + "px " + maxSizeAllowed/20 + "px"
+                // "border-radius": "0 " + maxSizeAllowed/20 + "px " + 0 + "px " + maxSizeAllowed/20 + "px"
+                "border-radius": "0 " + maxSizeAllowed/20 + "px " + bottomBorderRadius + "px " + maxSizeAllowed/20 + "px"
                 // "box-shadow": "0px 0px " + boxShadowSize + "px " + boxShadowSize/6 + "px #00FF00"
             });
 
