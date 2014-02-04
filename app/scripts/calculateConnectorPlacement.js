@@ -11,9 +11,47 @@ function getMaxSizeAllowed() {
     return Math.min(screen.availWidth, screen.availHeight);
 }
 
+var additionalRotations = [
+    -90, -135, -180, 
+    -225, -270, -270,
+    0, -45, -90
+    // 0,0,0,0,0,0,0,0,0
+];
+var rotationsIndex = 0;
+
+var firstConnectorChild, secondConnectorChild;
+var rotationAmount, placementCoordinates, connectorRotation;
+
+$.each($(".menuItem"), function() {
+
+    secondConnectorChild = $(this).find(".connector:nth-child(2)").first();
+    if(secondConnectorChild.length != 0) {
+        firstConnectorChild = $(this).find(".connector:nth-child(1)").first();
+        secondConnectorChild.css({
+            "margin-left": firstConnectorChild.width()
+        });
+    }
+    // Get parent to obtain rotation amount needed for placing connector.
+    rotationAmount = parseInt($(this).parent().attr('class').match(/rotate(\d*)/)[1]) - 30;
+    placementCoordinates = calculateConnectorPlacement(rotationAmount, additionalRotations[rotationsIndex], radii);
+    // alert(additionalRotations[rotationsIndex]);
+    // alert(JSON.stringify(placementCoordinates));
+    connectorRotation = 360 - (rotationAmount + additionalRotations[rotationsIndex]);
+    // alert(connectorRotation);
+    $(this).find(".connectorContainer").css({
+        "margin": (placementCoordinates.y + radii[1]*2.0*0.44) + "px 0 0 " + (placementCoordinates.x + radii[1]) + "px",
+        // "-webkit-transform": "rotate(" + connectorRotation + "deg)"
+    });
+    rotationsIndex++;
+});
+
+
+
+
 // Try first 2 menu items (3rd is brown :( )
 // alert(JSON.stringify(calculateConnectorPlacement(330, 0, radii)) + 
 //     "\n\n" + JSON.stringify(calculateConnectorPlacement(270, 0, radii)));
+/*
 var firstCoords, secondCoords, thirdCoords;
 firstCoords = calculateConnectorPlacement(270, 0, radii);
 secondCoords = calculateConnectorPlacement(330, 0, radii);
@@ -23,6 +61,15 @@ thirdCoords = calculateConnectorPlacement(390, 0, radii);
 //     (radii[1]*2.0*0.44) + "px 0 0 " + (radii[1]*2.0*0.44) + "px");
 // $(".menuItemWrapper.wrapper1.rotate360 .menuItem .testDot").css("margin", 
 //     (radii[1]*2.0*0.44) + "px 0 0 " + (radii[1]*2.0*0.44) + "px");
+
+
+
+
+
+
+
+
+
 
 $(".menuItemWrapper.wrapper1.rotate300 .menuItem .connector").css({
     "margin": (firstCoords.y + radii[1]*2.0*0.44) + "px 0 0 " + (firstCoords.x + radii[1]) + "px",
@@ -80,6 +127,11 @@ $(".menuItemWrapper.wrapper3.rotate240 .menuItem .connector").css({
     "margin": (secondCoords.y + radii[1]*2.0*0.44) + "px 0 0 " + (secondCoords.x + radii[1]) + "px",
     "-webkit-transform": "rotate(" + 30 + "deg)"
 });
+*/
+
+
+
+
 // $(".menuItemWrapper.wrapper2.rotate180 .menuItem .connector").css({
 //     "margin": (thirdCoords.y + radii[1]*2.0*0.44) + "px 0 0 " + (thirdCoords.x + radii[1]) + "px",
 //     "-webkit-transform": "rotate(" + 60 + "deg)"
@@ -107,13 +159,12 @@ function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle, radii) {
     
     var baseAngle = angleToBaseAngle(rawMenuItemAngle);
     finalPosition.menuItem130 = angleToBaseAngle(-1 * (baseAngle -360));
+
+    // alert(angleToBaseAngle(-1 * (baseAngle -360)));
     // ADD 110, THEN, convert to BASE ANGLE!!!
 
     // BLUE!
     if(baseAngle >= 250 || (baseAngle >= 0 && baseAngle <= 20)) {
-        // OLD SHIT!
-        // finalPosition.menuItem130 = 130 - angleToBaseAngle(rawMenuItemAngle + 110);
-        // finalPosition.menuItem130 = angleToBaseAngle(-1 * (baseAngle -360));
         finalPosition.colorCase = "BLUE";
 
         // Convert to bigCircle90 format THIS IS WHAT WE USE!
@@ -130,7 +181,6 @@ function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle, radii) {
             x: radiusSideCircles * Math.cos(bigCircleAngle * Math.PI / 180),
             y: radiusSideCircles * Math.sin(bigCircleAngle * Math.PI / 180)
         }
-        // alert("HIIIIII+ \n" + JSON.stringify(circleToEndPosition));
 
         finalPosition.x = circleToEndPosition.x - circleOriginToMenuItem.x;
         finalPosition.y = -1 * (circleToEndPosition.y - circleOriginToMenuItem.y);
@@ -138,27 +188,37 @@ function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle, radii) {
 
     // GREEN!
     if(baseAngle >= 201 && baseAngle <= 249) {
+        var trueRadius;
         finalPosition.colorCase = "GREEN";
-        var theta = baseAngle - 90;
+        var theta = (baseAngle - 90) * Math.PI / 180;
+        
         if(baseAngle > 225) {
-            finalPosition.x = -1.0 * radiusMenuItem;
-            finalPosition.y = -1.0 * Math.tan(theta) / radiusMenuItem;
+            finalPosition.y = -1.0 * radiusMenuItem;
+            trueRadius = finalPosition.y / Math.cos(theta); 
+            finalPosition.x = -1 * trueRadius * Math.sin(theta);
         }
         else {
-            finalPosition.x = -Math.tan(theta) / radiusMenuItem;
-            finalPosition.y = -radiusMenuItem;
+            finalPosition.x = -radiusMenuItem;            
+            trueRadius = finalPosition.x / Math.sin(theta);               
+            finalPosition.y = -1 * trueRadius * Math.cos(theta);
         }
+        
     }
 
-    // YELLOW! This case never happens
+    // YELLOW!
     if(baseAngle >= 70 && baseAngle <= 200) {
-        // OLD SHIT!
-        // finalPosition.menuItem130 = 130 - angleToBaseAngle(rawMenuItemAngle + 110);
-        finalPosition.menuItem130 = angleToBaseAngle(-1 * (baseAngle -360));
+        // alert('yellow');
         finalPosition.colorCase = "YELLOW";
 
+
+
+        //Conversion to 130 format must involve extra step.
+
+        finalPosition.menuItem130 = 360 - baseAngle - 50 - 130;
+        // finalPosition.menuItem130 = angleToBaseAngle(-1 * (baseAngle -360));
         // Convert to bigCircle90 format THIS IS WHAT WE USE!
-        var bigCircleAngle = (finalPosition.menuItem130 + 20) * 90 / 130;
+        // var bigCircleAngle = (finalPosition.menuItem130 + 20) * 90 / 130;
+        var bigCircleAngle = angleToBaseAngle(finalPosition.menuItem130 + 20) * 90 / 130;
         finalPosition.bigCircle90 = bigCircleAngle;
 
         //β BETA!
@@ -171,8 +231,8 @@ function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle, radii) {
             y: radiusSideCircles * Math.sin(bigCircleAngle * Math.PI / 180)
         }
 
-        finalPosition.x = circleToEndPosition.x - circleOriginToMenuItem.x;
-        finalPosition.y = -1 * (circleToEndPosition.y - circleOriginToMenuItem.y);
+        finalPosition.x = -1 * (circleToEndPosition.x - circleOriginToMenuItem.x);
+        finalPosition.y =  1 * (circleToEndPosition.y - circleOriginToMenuItem.y);
     }
 
     // And finally, BROWN!!!!!!!
@@ -206,7 +266,7 @@ function calculateConnectorPlacement(rawMenuItemAngle, additionalAngle, radii) {
     }
 
 
-
+    // alert(finalPosition.menuItem130);
     // testPutSmallDotAtMenuItemOriginToNewPosition
     return finalPosition;
 }

@@ -1,12 +1,12 @@
 body {
-    background-color: black;
+    background-color: white;
     /*background: url("http://wallpoper.com/images/00/29/92/77/abstract-hexagons_00299277.jpg");*/
     background-repeat: no-repeat;
 }
 
 #menu {
     position:  absolute;
-    /*border: thin solid white;*/
+    border: thin solid black;
 /*
     left: 700px;
     top: 100px;*/
@@ -217,13 +217,13 @@ html:hover .rotate270{
     /*border-radius: 5px;*/
 }
 
-.connector {
+./*connector {
     position: relative;
     background-color: green;
     height: 6%;
     width: 200%;
     -webkit-transform-origin: 0% 50%;
-}
+}*/
 
 #checkForVal {
     z-index: 900;
@@ -231,7 +231,7 @@ html:hover .rotate270{
 }
 
 
-.connectorBent {
+/*.connectorBent {
     position: relative;
     width: 200%;
 }
@@ -243,4 +243,57 @@ html:hover .rotate270{
 .connectorBent .straightInner {
     background-color: green;
     height: 3px; 
+}*/
+
+
+
+
+
+
+
+
+/* All connector css here */
+
+.connectorContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    /* just for testing: */
+    border: 1px solid black;
+    border-radius: 10px 0 0 0;
+    -webkit-transform-origin: 0% 0%;     
+}
+
+.connectorContainer .connector:nth-child(2) {
+    /*margin: -6% 0 0 100%;*/
+    margin-top: -6%;
+    -webkit-transform-origin: 0% 100%; 
+    -webkit-transform: rotate(-45deg);
+}
+
+.connector {
+    position: relative;
+    height: 6%;
+    background-color: green;
+}    
+
+
+
+/* All percentages for connectors, so we don't have to calculate them
+    via js, too slow for mobile */
+.conFive {
+    width: 50%;
+}
+.conSevenFive {
+    width: 75%;
+}
+.conOne {
+    width: 100%;
+}
+.conOneFive {
+    width: 150%;
+}
+.conTwo {
+    width: 200%;
 }
