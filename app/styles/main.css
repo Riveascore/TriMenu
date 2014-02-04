@@ -7,11 +7,6 @@ body {
 #menu {
     position:  absolute;
     border: thin solid black;
-/*
-    left: 700px;
-    top: 100px;*/
-    /* Dont need^ these anymore because added offset
-    to origin coordinates in setupRotation.js fixed issue */
 }
 
 .menuButton {
@@ -169,56 +164,18 @@ html:hover .straightPath {
     -webkit-transform: rotate(300deg);
 }
 
-/*html:hover .rotate180{
-    -webkit-transform: rotate(-180deg);
-}
-html:hover .rotate225{
-    -webkit-transform: rotate(-225deg);
-}
-html:hover .rotate270{
-    -webkit-transform: rotate(-270deg);
-}*/
 
 .menuItem {
     -webkit-transform: rotate(30deg);
 
 }
 
-.redDot {
-    background: red;
-    width: 10px;
-    height: 10px;
-    position: absolute;
-    /*border-radius: 5px;*/
-}
-
-./*connector {
-    position: relative;
-    background-color: green;
-    height: 6%;
-    width: 200%;
-    -webkit-transform-origin: 0% 50%;
-}*/
 
 #checkForVal {
     z-index: 900;
     position: absolute;
 }
 
-
-/*.connectorBent {
-    position: relative;
-    width: 200%;
-}
-.connectorBent .bentInner {
-    -webkit-transform-origin: 100% 0%;
-    -webkit-transform: rotate(-45deg);
-    background-color: green;    
-}
-.connectorBent .straightInner {
-    background-color: green;
-    height: 3px; 
-}*/
 
 
 
@@ -233,24 +190,63 @@ html:hover .rotate270{
     width: 100%;
     height: 100%;
     position: relative;
-
-    /* just for testing: */
-    /*border: 1px solid black;*/
-    /*border-radius: 10px 0 0 0;*/
     -webkit-transform-origin: 0% 0%;     
 }
 
 .connectorContainer .connector:nth-child(2) {
-    /*margin: -6% 0 0 100%;*/
-    margin-top: -6%;
+    visibility: hidden;
     -webkit-transform-origin: 0% 100%; 
-    -webkit-transform: rotate(-45deg);
+    /*-webkit-transform: rotateZ(-45deg) rotateY(90deg);*/
+    -webkit-transform: rotate3d(0, 0, 1, -45deg) rotate3d(0, 1, 0, 90deg);
+    -webkit-transition: transform .7s;    
+    -webkit-transition-delay: .7s;
 }
+
+#openOrClosed:checked ~ .menuItemWrapper .connector:nth-child(2) {
+    visibility: visible;    
+    -webkit-transform: rotate3d(0, 0, 1, -45deg) rotate3d(0, 1, 0, 0deg); 
+}
+
+.connectorContainer .connector:nth-child(1) {
+    visibility: hidden;    
+    -webkit-transform-origin: 0% 100%; 
+    -webkit-transform: rotate3d(0, 1, 0, 90deg);
+    -webkit-transition: transform .7s;    
+    -webkit-transition-delay: .3s;
+}
+
+#openOrClosed:checked ~ .menuItemWrapper .connector:nth-child(1) {
+    visibility: visible;    
+    -webkit-transform: rotate3d(0, 1, 0, 0deg); 
+}
+
+
+
+.menuItemWrapper:nth-of-type(3n) .connector {
+    /*visibility: hidden;      */
+    -webkit-transition-delay: .7s;
+    /*-webkit-transition: transform 2.0s;*/
+}
+
+
+.menuText {
+    opacity: 0;
+    -webkit-transition: opacity 0; 
+    -webkit-transition: opacity 1s;
+    -webkit-transition-delay: .9s;       
+}
+#openOrClosed:checked ~ .menuItemWrapper .menuText {
+    opacity: 1;
+}
+
+
 
 .connector {
     position: relative;
     height: 6%;
     background-color: green;
+    padding-top: 1px;
+    margin-top: -1px;
 }    
 
 
@@ -265,6 +261,11 @@ html:hover .rotate270{
 }
 .conOne {
     width: 100%;
+/*    visibility: hidden;
+    -webkit-transform: translate();*/
+    /*-webkit-transform-origin: 0% 50%;*/
+    /*-webkit-transform: rotateZ(90deg);*/
+    /*-webkit-transition: transform .7s;    */
 }
 .conOneFive {
     width: 150%;
@@ -276,33 +277,24 @@ html:hover .rotate270{
 
 
 
-/*html:hover .rotate300{
-    -webkit-transform: rotate(-300deg);
+#openOrClosed:checked ~ .menuItemWrapper .conOne {
+/*    width: 100%;
+    visibility: visible;*/
+/*    -webkit-transition-delay: .3s;    
+    -webkit-transform: rotateZ(0deg);*/  
 }
-html:hover .rotate360{
-    -webkit-transform: rotate(-360deg);
-}
-html:hover .rotate420{
-    -webkit-transform: rotate(-420deg);
+/*    visibility: visible;
+    -webkit-transition-delay: .3s;
+    -webkit-transform: rotateY(0deg);*/
+
+.angledInner {
+    visibility: hidden;
+    background: #00FF00;
+    -webkit-transform-origin: 0% 50%;
+    -webkit-transform: rotateY(90deg);
+    -webkit-transition: transform .7s;
 }
 
-
-html:hover .rotate60{
-    -webkit-transform: rotate(-60deg);
-}
-html:hover .rotate120{
-    -webkit-transform: rotate(-120deg);
-}
-html:hover .rotate180{
-    -webkit-transform: rotate(-180deg);
-}
-
-html:hover .rotate240{
-    -webkit-transform: rotate(-240deg);
-}*/
-#openOrClosed {
-
-}
 #openOrClosed:checked ~ .rotate300{
     -webkit-transform: rotate(-300deg);
 }
@@ -326,4 +318,37 @@ html:hover .rotate240{
 
 #openOrClosed:checked ~ .rotate240{
     -webkit-transform: rotate(-240deg);
+}
+
+/* Lazy, default to fixed size for now */
+.menuText {
+    width: 60px;
+    height: 60px;
+    margin-left: 100%;
+    margin-top: -30px;
+    text-align:center;    
+}
+
+
+.wrapper1.rotate300 .menuText {
+    -webkit-transform: rotate(-225deg);
+}
+.wrapper1.rotate360 .menuText,
+.wrapper1.rotate420 .menuText {
+    -webkit-transform: rotate(-180deg);
+}
+.wrapper2.rotate60 .menuText {
+    -webkit-transform: rotate(-90deg);    
+}
+
+.wrapper2.rotate120 .menuText,
+.wrapper2.rotate180 .menuText {
+    -webkit-transform: rotate(-45deg); 
+}
+.wrapper3.rotate180 .menuText {
+    -webkit-transform: rotate(45deg);
+}
+.wrapper3.rotate240 .menuText, 
+.wrapper3.rotate300 .menuText {
+    -webkit-transform: rotate(90deg);    
 }

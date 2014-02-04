@@ -13,7 +13,7 @@ function getMaxSizeAllowed() {
 
 var additionalRotations = [
     -90, -135, -180, 
-    -225, -270, -270,
+    -225, -270, -315,
     0, -45, -90
     // 0,0,0,0,0,0,0,0,0
 ];
@@ -28,7 +28,8 @@ $.each($(".menuItem"), function() {
     if(secondConnectorChild.length != 0) {
         firstConnectorChild = $(this).find(".connector:nth-child(1)").first();
         secondConnectorChild.css({
-            "margin-left": firstConnectorChild.width()
+            "margin-left": firstConnectorChild.width(),
+            "margin-top": (-1.0 * firstConnectorChild.height() - 1)
         });
     }
     // Get parent to obtain rotation amount needed for placing connector.
