@@ -4,5 +4,7 @@ function angleToBaseAngle(inputAngle) {
 }
 
 function getMaxSizeAllowed() {
-    return Math.min(screen.availWidth, screen.availHeight);
+    // return Math.min(screen.availWidth, screen.availHeight);
+    // Use window since this is based on browser viewport instead of full screen size:
+	return Math.min($(window).width(), $(window).height());
 }

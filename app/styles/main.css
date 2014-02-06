@@ -1,13 +1,60 @@
-body {
-    background-color: white;
-    /*background: url("http://wallpoper.com/images/00/29/92/77/abstract-hexagons_00299277.jpg");*/
-    background-repeat: no-repeat;
+/* removing container's auto margin */
+.container {
+    margin-left: 0;
+    margin-right: 0;    
 }
 
-#menu {
-    position:  absolute;
+/* HERE IS WHERE WE FIX SIZING/PLACEMENT VIA CSS3 INSTEAD OF SLOW ASS JS */
+/*@media all and (orientation:portrait) {     
+    #menu {
+        width: 100vw;
+        height: 100vw;
+    }  
+}
+@media all and (orientation:landscape) {
+    #menu {
+        width: 100vh;
+        height: 100vh;      
+    }   
+}*/
+#menu {  
+    width: 100vmin;
+    height: 100vmin; 
+    left: 50vw;
+    margin-left: -50vmin;
+    /*position: static;   */
+    /*margin:0 auto;     */
+    position: absolute;
+    float: left;
     border: thin solid black;
 }
+#dummy {
+    width: 50vmax;    
+    height: 50vmax;   
+    background: none;
+    position: relative;
+    float: left;    
+}
+.menuItemWrapper {
+    width: 50%;
+    height: 50%;
+    /*margin-left: 1.5%;*/
+}
+.menuItem {
+    width: 16%;
+    height: 16%;  
+    border-radius: 0 70% 0 70%;  
+    margin-top: 42%;
+    margin-left: 92%;
+}
+/* HERE IS WHERE WE FIX SIZING/PLACEMENT VIA CSS3 INSTEAD OF SLOW ASS JS */
+
+body {
+    background-color: white;
+}
+
+
+
 
 .menuButton {
     background: url("../images/menu.png");
@@ -15,29 +62,39 @@ body {
     background-repeat: no-repeat;
     position: absolute;
 }
+.middleSquare {
+    width: 10%;
+    height: 10%;
+    background-color: rgba(255, 200, 100, 0.5);
+    margin-left: 45%;
+    margin-top: 45%;
+    z-index: 900;
+    position: absolute;
+}
 
 .wrapper1 {
+    margin: 5% 0 0 30%; 
     -webkit-transition: transform 1s;
     position:  absolute;
     -webkit-transform: rotate(-270deg);
-    /*border: thin solid red;*/
 }
-.wrapper2 {
+.wrapper2 {    
+    margin: 42.3% 0 0 8.4%;
     -webkit-transition: transform 1s;
     position:  absolute;
     -webkit-transform: rotate(-30deg);
-    /*border: thin solid green;*/
 }
-.wrapper3 {
+.wrapper3 {  
+    margin: 42.5% 0 0 52%;    
     -webkit-transition: transform 1s;
     position:  absolute;
     -webkit-transform: rotate(-150deg);
-    /*border: thin solid blue;*/
 }
 
 .wrapper1 .menuItem {
     position:  absolute;
     background: green;
+    /*background: red;    */
     /*background: url("http://99covers.com/covers/watermark/23766.jpg");*/
 }
 .wrapper2 .menuItem {
@@ -47,7 +104,8 @@ body {
 }
 .wrapper3 .menuItem {
     position:  absolute;
-    background: green; 
+    background: green;    
+    /*background: blue; */
     /*background: url("http://99covers.com/covers/watermark/23766.jpg");*/
 }
 
@@ -201,7 +259,9 @@ html:hover .straightPath {
     -webkit-transition: transform .7s;    
     -webkit-transition-delay: .7s;
 }
-
+#openOrClosed {
+    position: absolute;
+}
 #openOrClosed:checked ~ .menuItemWrapper .connector:nth-child(2) {
     visibility: visible;    
     -webkit-transform: rotate3d(0, 0, 1, -45deg) rotate3d(0, 1, 0, 0deg); 
@@ -230,6 +290,7 @@ html:hover .straightPath {
 
 
 .menuText {
+    transform: translateZ(0);
     opacity: 0;
     -webkit-transition: opacity 0; 
     -webkit-transition: opacity 1s;

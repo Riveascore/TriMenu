@@ -1,5 +1,5 @@
 var radii = [
-    36.4, 51.67/2.0, 1
+    getMaxSizeAllowed()/20, $("#menu").width()/12/2.0, 1
 ];
 
 function angleToBaseAngle(inputAngle) {
